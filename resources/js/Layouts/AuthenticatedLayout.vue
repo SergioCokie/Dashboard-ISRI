@@ -32,7 +32,11 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+                            
                             </div>
+                            <DropdownLink :href="route('logout')" method="post" as="button">
+                                            Log Out
+                                        </DropdownLink>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -65,9 +69,7 @@ const showingNavigationDropdown = ref(false);
 
                                     <template #content>
                                         <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
-                                        </DropdownLink>
+                                      
                                     </template>
                                 </Dropdown>
                             </div>
