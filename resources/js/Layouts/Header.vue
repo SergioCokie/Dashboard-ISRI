@@ -43,26 +43,14 @@ import MenuSidebarVue from '@/Components-ISRI/SidebarComponents/MenuSidebar.vue'
 
                     <Notifications />
 
-                    <div class="relative inline-flex">
-                        <button
-                            class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full"
-                            aria-haspopup="true" aria-expanded="false"><span class="sr-only">Info</span><svg
-                                class="w-4 h-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                <path class="fill-current text-slate-500"
-                                    d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z">
-                                </path>
-                            </svg>
-                        </button>
+                    <help />
 
-                    </div>
-
-                    <!-- Divider -->
                     <hr class="w-px h-6 bg-slate-200">
                     <UserMenuVue />
                 </div>
             </div>
         </div>
-        <SearchModal :stateToModalSearch="stateLocal"/>
+        <SearchModal :stateToModalSearch="stateLocal" />
     </header>
 </template>
 
@@ -72,25 +60,20 @@ import { ref } from 'vue'
 import SearchModal from '@/Components-ISRI/HeaderComponents/ModalSearch.vue'
 import UserMenuVue from '@/Components-ISRI/HeaderComponents/UserMenu.vue'
 import Notifications from '@/Components-ISRI/HeaderComponents/Notifications.vue';
-/* import Notifications from '../components/DropdownNotifications.vue'
-import Help from '../components/DropdownHelp.vue'
-import UserMenu from '../components/DropdownProfile.vue' */
+import Help from '@/Components-ISRI/HeaderComponents/Help.vue';
+
 
 export default {
-    /* props: [''], */
     data: function () {
         return {
-            stateLocal:false,
+            stateLocal: false,
         }
     },
     components: {
-    SearchModal,
-    UserMenuVue,
-    Notifications
-},
-    methods: {
-
+        SearchModal,
+        UserMenuVue,
+        Notifications,
+        Help
     },
-
 }
 </script>

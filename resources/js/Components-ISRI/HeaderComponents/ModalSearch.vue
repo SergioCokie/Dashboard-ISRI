@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO:ARREGLAR MODAL SEARCH - NO ES DEL TODO REACTIVO VERIFICAR DOCUMENTACION Vite App -->
+
   <!-- Modal backdrop -->
   <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0"
     enter-to-class="opacity-100" leave-active-class="transition ease-out duration-100" leave-from-class="opacity-100"
@@ -29,8 +31,9 @@
           </svg>
         </button>
 
-        <FormModalSearch />
-        <Searches />
+        <FormModalSearch /><!-- FORM PARA BUSCAR -->
+
+        <Searches /><!-- DATOS BUSCADOS -->
 
       </div>
 

@@ -1,9 +1,12 @@
 <template>
     <div class="relative inline-flex">
-        <button
+        <button ref="trigger"
             class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full"
-            aria-haspopup="true" aria-expanded="false"><span class="sr-only">Notifications</span><svg class="w-4 h-4"
-                viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            :class="{ 'bg-slate-200': dropdownNotificationsOpen }" aria-haspopup="true"
+            @click.prevent="dropdownNotificationsOpen = !dropdownNotificationsOpen"
+            :aria-expanded="dropdownNotificationsOpen">
+            <span class="sr-only">Notifications</span>
+            <svg class="w-4 h-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                 <path class="fill-current text-slate-500"
                     d="M6.5 0C2.91 0 0 2.462 0 5.5c0 1.075.37 2.074 1 2.922V12l2.699-1.542A7.454 7.454 0 006.5 11c3.59 0 6.5-2.462 6.5-5.5S10.09 0 6.5 0z">
                 </path>
@@ -17,42 +20,83 @@
 
 
 
-        <div class="origin-top-right z-10 absolute top-full -mr-48 sm:mr-0 min-w-80 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1 right-0"
-            style="">
-            <div class="text-xs font-semibold text-slate-400 uppercase pt-1.5 pb-2 px-4">
-                Notifications
-            </div>
-            <ul>
-                <li class="border-b border-slate-200 last:border-0">
-                    <a aria-current="page" href="/component/modal#0"
-                        class="router-link-active router-link-exact-active block py-2 px-4 hover:bg-slate-50"><span
-                            class="block text-sm mb-2">📣
-                            <span class="font-medium text-slate-800">
-                                Edit your information in a swipe
+        <transition enter-active-class="transition ease-out duration-200 transform"
+            enter-from-class="opacity-0 -translate-y-2" enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-out duration-200" leave-from-class="opacity-100"
+            leave-to-class="opacity-0">
+            <div v-show="dropdownNotificationsOpen"
+                class="origin-top-right z-10 absolute top-full -mr-48 sm:mr-0 min-w-80 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1 right-0">
+                <div class="text-sm font-bold text-slate-400 uppercase pt-1.5 pb-2 px-4 pr-52">
+                    Notifications
+                </div>
+                <ul ref="dropdown" @focusin="dropdownNotificationsOpen = true"
+                    @focusout="dropdownNotificationsOpen = false">
+                    <li class="border-b border-slate-200 last:border-0">
+                        <a aria-current="page" href="/"
+                            class="router-link-active router-link-exact-active block py-2 px-4 hover:bg-slate-50">
+                            <span class="block text-sm mb-2">📣
+                                <span class="font-bold text-slate-800">Edit your information in a swipe</span>
+                                Sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                deserunt mollit anim.
                             </span>
-                        </span>
-                        <span class="block text-xs font-medium text-slate-400">
-                            Feb 12,2021
-                        </span>
-                    </a>
-                </li>
+                            <span class="block text-xs font-medium text-slate-400">
+                                Feb 12, 2021
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </transition>
 
-            </ul>
-        </div>
     </div>
 
 </template>
 
 <script>
-export default {
+import { ref, onMounted, onUnmounted } from 'vue'
 
+export default {
+    setup() {
+
+        const dropdownNotificationsOpen = ref(false)
+        const trigger = ref(null)
+        const dropdown = ref(null)
+
+        // close on click outside
+        const clickHandler = ({ target }) => {
+            if (!dropdownNotificationsOpen.value || dropdown.value.contains(target) || trigger.value.contains(target)) return
+            dropdownNotificationsOpen.value = false
+        }
+
+        // close if the esc key is pressed
+        const keyHandler = ({ keyCode }) => {
+            if (!dropdownNotificationsOpen.value || keyCode !== 27) return
+            dropdownNotificationsOpen.value = false
+        }
+
+        onMounted(() => {
+            document.addEventListener('click', clickHandler)
+            document.addEventListener('keydown', keyHandler)
+        })
+
+        onUnmounted(() => {
+            document.removeEventListener('click', clickHandler)
+            document.removeEventListener('keydown', keyHandler)
+        })
+
+        return {
+            dropdownNotificationsOpen,
+            trigger,
+            dropdown,
+        }
+    }
 }
 </script>
 
 <style>
-@media (min-width: 640px) {
+/* @media (min-width: 640px) {
     .sm\:mr-0 {
         margin-right: -233px;
     }
-}
+} */
 </style>
