@@ -31,9 +31,8 @@
           </svg>
         </button>
 
-        <FormModalSearch /><!-- FORM PARA BUSCAR -->
-
-        <Searches /><!-- DATOS BUSCADOS -->
+        <FormModalSearch />
+        <Searches />
 
       </div>
 

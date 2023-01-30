@@ -4,8 +4,7 @@
         <button class="inline-flex justify-center items-center group" ref="trigger"
             @click.prevent="dropdownOpen = !dropdownOpen" :aria-expanded="dropdownOpen" aria-haspopup="true">
 
-            <img class="w-8 h-8 rounded-full" src="http://localhost:5174/src/images/user-avatar-32.png" width="32"
-                height="32" alt="User">
+            <img class="w-8 h-8 rounded-full" :src="imgPrfile" width="32" height="32" alt="User">
             <div class="flex items-center truncate">
                 <span class="truncate ml-2 text-sm font-medium group-hover:text-slate-800">
                     {{ $page.props.auth.user.name }}
@@ -28,15 +27,9 @@
                 </div>
                 <ul ref="dropdown" @focusin="dropdownOpen = true" @focusout="dropdownOpen = false">
                     <li>
-                        <DropdownLink :href="route('profile.edit')"
-                            class="font-bold text-sm text-indigo-500 flex items-center py-1 px-3">
-                            Perfil
-                        </DropdownLink>
-                    </li>
-                    <li>
                         <DropdownLink :href="route('logout')" method="post" as="a"
                             class="font-bold text-sm text-indigo-500 flex items-center py-1 px-3">
-                            Logout
+                            Salir
                         </DropdownLink>
                     </li>
 
@@ -55,14 +48,9 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import { ref, onMounted, onUnmounted } from 'vue'
 
 export default {
-
-    /*  data() {
-         return {
-             dropdownOpen: false,
-         }
-     }, */
     components: { DropdownLink },
     setup() {
+        const imgPrfile = ""
 
         const dropdownOpen = ref(false)
         const trigger = ref(null)
@@ -86,13 +74,17 @@ export default {
             document.removeEventListener('click', clickHandler)
             document.removeEventListener('keydown', keyHandler)
         })
-
         return {
             dropdownOpen,
             trigger,
             dropdown,
         }
     },
+
+    created() {
+        let name = this.$page.props.auth.user.name.split(" ")
+        this.imgPrfile = "https://ui-avatars.com/api/?name=" + name[0] + "+" + name[2] + "&background=313945&color=fff&size=100"
+    }
 
 }
 </script>
