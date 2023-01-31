@@ -1,6 +1,4 @@
 <template>
-
-    <!-- 1 card -->
     <DropdownLink :href="route('sistema1')" method="get" as="button">
         <div
             class="relative cursor-pointer py-6 px-6 rounded-md w-64 my-4  bg-white  shadow-lg hover:scale-110 transform transition-all duration-500 hover:shadow-slate-600">
@@ -14,7 +12,6 @@
                         d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z">
                     </path>
                 </svg>
-
             </div>
             <div class="mt-8">
                 <p class="text-xl font-semibold my-2">RRHH</p>
@@ -39,10 +36,8 @@
 
 <script>
 import DropdownLink from '@/Components/DropdownLink.vue';
-
 export default {
     components: { DropdownLink }
-
 }
 </script>
 

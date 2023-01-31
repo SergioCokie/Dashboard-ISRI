@@ -1,8 +1,8 @@
 <template>
     <!-- Dashboard -->
-    <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 bg-slate-900"
-        @click="StateFromModal ? stateToMenu = !stateToMenu : this.$emit('emitToShowSidebarFromModules')">
-        <a class="block text-slate-200 hover:text-white truncate transition duration-150" href="#0">
+    <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 bg-slate-900 cursor-pointer">
+        <a class="block text-slate-200 hover:text-white truncate transition duration-150"
+            @click="StateFromModal ? stateToMenu = !stateToMenu : this.$emit('emitToShowSidebarFromModules')">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
@@ -18,7 +18,8 @@
                     </span>
                 </div><!-- Icon -->
                 <div class="flex shrink-0 ml-2">
-                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 rotate-180" viewBox="0 0 12 12">
+                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 "
+                        :class="stateToMenu ? 'rotate-360' : 'rotate-180'" viewBox="0 0 12 12">
                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
                     </svg>
                 </div>
@@ -39,7 +40,7 @@ export default {
     props: ["StateFromModal"],
     data: function () {
         return {
-            stateToMenu: true
+            stateToMenu: false
         }
     }
 }
