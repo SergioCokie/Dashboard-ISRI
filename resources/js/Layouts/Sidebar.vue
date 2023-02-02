@@ -51,8 +51,8 @@ export default {
     props: ["propToChangeStateSidebar"],
     data: function () {
         return {
-            classToSidebar: "",
-            stateFromSidebar: false,
+            classToSidebar: "lg:overflow-y-auto ",
+            stateFromSidebar: true,
         }
     },
     methods: {

@@ -1,7 +1,7 @@
 <template>
 
     <!-- 1 card -->
-    <DropdownLink :href="route('mainpage',this.modulo.id_rol)" method="get" as="button">
+    <DropdownLink :href="route('mainpage', this.modulo.id_rol)" method="get" as="button">
         <div
             class="relative cursor-pointer py-6 px-6 rounded-md w-64 my-4  bg-white  shadow-lg hover:scale-110 transform transition-all duration-500 hover:shadow-slate-600">
             <div

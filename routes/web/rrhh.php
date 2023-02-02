@@ -1,12 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
-Route::group(['middleware' => ['auth','access']], function () {
-    Route::get('rrhh/empleados', function () {
-        return "Acceso menu gestion de empleados";
-    });
-    Route::get('rrhh/consultar', function () {
-        return "Acceso menu consultar empleados";
-    });
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('rrhh/consulta/{id}/{id2}', [AuthenticatedSessionController::class, 'getMenus2'])->name('consulta.empleados');
+
+    Route::get('rrhh/gestion/{id}/{id2}', [AuthenticatedSessionController::class, 'getMenus2'])->name('gestion.empleados');
+
 });

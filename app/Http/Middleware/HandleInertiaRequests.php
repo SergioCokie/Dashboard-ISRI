@@ -54,7 +54,9 @@ class HandleInertiaRequests extends Middleware
                                 foreach ($hijos as $hijo) {
                                     foreach ($hijo->roles as $hijo_rol) {
                                         if ($hijo_rol->pivot->estado_acceso_menu == 1 && $hijo_rol->pivot->id_rol == $rol->id_rol) {
+                                            $array_hijo['id_menu'] = $hijo->id_menu;
                                             $array_hijo['nombre_submenu'] = $hijo->nombre_menu;
+                                            $array_hijo['nombre_ruta'] = $hijo->nombre_ruta;
                                             $array_hijo['url'] = $hijo->url_menu;
                                             array_push($menu_hijos, $array_hijo);
                                             $array_hijo = [];

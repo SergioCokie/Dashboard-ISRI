@@ -12,7 +12,6 @@ import MenuSidebarVue from '@/Components-ISRI/SidebarComponents/MenuSidebar.vue'
 
                 <!-- Header: Left side -->
                 <div class="flex">
-
                     <!-- Hamburger button -->
                     <button class="text-slate-500 hover:text-slate-600 lg:hidden" @click="$emit('OpenOrCloseModal')"
                         aria-controls="sidebar" :aria-expanded="sidebarOpen">
@@ -23,12 +22,11 @@ import MenuSidebarVue from '@/Components-ISRI/SidebarComponents/MenuSidebar.vue'
                             <rect x="4" y="17" width="16" height="2" />
                         </svg>
                     </button>
-
                 </div>
 
                 <!-- Header: Right side -->
                 <div class="flex items-center space-x-3">
-                    <button @click="stateLocal = !stateLocal"
+                    <!-- <button @click="stateLocal = !stateLocal"
                         class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full ml-3"
                         aria-controls="search-modal"><span class="sr-only">Search</span>
                         <svg class="w-4 h-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +41,7 @@ import MenuSidebarVue from '@/Components-ISRI/SidebarComponents/MenuSidebar.vue'
 
                     <Notifications />
 
-                    <help />
+                    <help /> -->
 
                     <hr class="w-px h-6 bg-slate-200">
                     <UserMenuVue />

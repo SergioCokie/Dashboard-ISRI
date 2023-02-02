@@ -19,6 +19,8 @@ class Menu extends Model
         'nombre_menu',
         'url_menu',
         'estado_menu',
+        'nombre_ruta',
+        'page',
     ];
 
     public function sistema()

@@ -1,8 +1,7 @@
 <template>
-    <!-- Dashboard -->
-    <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 bg-slate-900"
-        @click="StateFromModal ? stateToMenu = !stateToMenu : this.$emit('emitToShowSidebarFromModules')">
-        <a class="block text-slate-200 hover:text-white truncate transition duration-150" href="#0">
+    <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 bg-slate-900 cursor-pointer">
+        <a @click="StateFromModal ? stateToMenu = !stateToMenu : this.$emit('emitToShowSidebarFromModules')"
+            class="block text-slate-200 hover:text-white truncate transition duration-150">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
@@ -16,7 +15,7 @@
                     <span class="text-sm font-medium ml-3 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                         {{ modulo.menu }}
                     </span>
-                </div><!-- Icon -->
+                </div>
                 <div class="flex shrink-0 ml-2">
                     <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 rotate-180" viewBox="0 0 12 12">
                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
@@ -26,7 +25,7 @@
         </a>
         <div class="lg:sidebar-expanded:block 2xl:block">
             <ul class="pl-9 mt-1" :class="stateToMenu ? 'hidden' : ''">
-                <LinksSidebar v-for="(m, i) in modulo.submenu" :key="i" :infoModule="m"/>
+                <LinksSidebar v-for="(m, i) in modulo.submenu" :key="i" :infoModule="m" />
             </ul>
         </div>
     </li>
@@ -36,10 +35,10 @@
 import LinksSidebar from './LinksSidebar.vue'
 export default {
     components: { LinksSidebar },
-    props: ["StateFromModal","modulo"],
+    props: ["StateFromModal", "modulo"],
     data: function () {
         return {
-            stateToMenu: true
+            stateToMenu: false
         }
     }
 }

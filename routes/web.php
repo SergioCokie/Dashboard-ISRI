@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,14 +23,10 @@ Route::get('dashboard', function () {
 Route::get('dashboard/{id}', [AuthenticatedSessionController::class, 'getMenus'])
 ->middleware(['auth', 'verified'])->name('mainpage');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {  
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    //RUTAS NUEVAS
-    Route::get('/sistema1', [SistemaController::class, 'index'])->name('sistema1');
-
 });
 
 require __DIR__.'/web/auth.php';

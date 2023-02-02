@@ -4,8 +4,8 @@
         <button class="inline-flex justify-center items-center group" ref="trigger"
             @click.prevent="dropdownOpen = !dropdownOpen" :aria-expanded="dropdownOpen" aria-haspopup="true">
 
-            <!-- <img class="w-8 h-8 rounded-full" src="http://localhost:5174/src/images/user-avatar-32.png" width="32"
-                height="32" alt="User"> -->
+            <img class="w-8 h-8 rounded-full" :src="imgPrfile" width="32" height="32" alt="User">
+
             <div class="flex items-center truncate">
                 <span class="truncate ml-2 text-sm font-medium group-hover:text-slate-800">
                     {{ $page.props.auth.user.nick_usuario }}
@@ -24,15 +24,11 @@
                 class="origin-top-right z-10 absolute top-full min-w-44 bg-white border border-slate-200 py-1.5 rounded shadow-lg  mt-1 right-0">
                 <div class="pt-0.5 pb-2 px-3 mb-1 border-slate-200">
                     <div class="font-bold text-slate-800">{{ $page.props.auth.user.name }}</div>
-                    <div class="text-xs text-slate-500 italic">{{ $page.props.menu ? $page.props.menu.rol:'' }}</div>
+                    <div class="text-xs text-slate-500 italic">{{
+                        $page.props.menu ? $page.props.menu.rol : 'Bienvenido al sistema ISRI'
+                    }}</div>
                 </div>
                 <ul ref="dropdown" @focusin="dropdownOpen = true" @focusout="dropdownOpen = false">
-                    <li>
-                        <DropdownLink :href="route('profile.edit')"
-                            class="font-bold text-sm text-indigo-500 flex items-center py-1 px-3">
-                            Perfil
-                        </DropdownLink>
-                    </li>
                     <li>
                         <DropdownLink :href="route('logout')" method="post" as="a"
                             class="font-bold text-sm text-indigo-500 flex items-center py-1 px-3">
@@ -55,14 +51,9 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import { ref, onMounted, onUnmounted } from 'vue'
 
 export default {
-
-    /*  data() {
-         return {
-             dropdownOpen: false,
-         }
-     }, */
     components: { DropdownLink },
     setup() {
+        const imgPrfile = ""
 
         const dropdownOpen = ref(false)
         const trigger = ref(null)
@@ -93,6 +84,10 @@ export default {
             dropdown,
         }
     },
+    created() {
+        let name = this.$page.props.auth.user.nick_usuario
+        this.imgPrfile = "https://ui-avatars.com/api/?name=" + name + "&background=313945&color=fff&size=100"
+    }
 
 }
 </script>

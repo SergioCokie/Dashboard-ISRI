@@ -1,7 +1,7 @@
 <template>
     <li class="mb-1 last:mb-0 hover:scale-110 transform transition-all duration-500">
-        <DropdownLink :href=infoModule.url as="a"
-            class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+        <DropdownLink :href="route(infoModule.nombre_ruta, [$page.props.menu.id_rol, infoModule.id_menu])" method="get"
+            as="a" class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
             <span class="text-sm font-medium  lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                 {{ infoModule.nombre_submenu }}
             </span>
